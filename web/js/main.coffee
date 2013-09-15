@@ -1,12 +1,15 @@
 ((App) ->
+	barsList = null
 	onSearch = (page) ->
 		query = $(page).find('#venueSearchQuery').val()
-		console.log $(page).find('#venueSearchQuery')
-		console.log query
 		if query
 			getBars query, (err, venues) ->
-				venues.forEach (venue) ->
-					console.log(render('venue_listitem', {name: 'Bar', imageUrl: null, description: 'Cool'}))
+				barsList = venues
+				listitems = ""
+				venues.forEach (venue, index) ->
+					listitems += render('venue_listitem', {index: index, name: venue.name, id: venue.id, location: venue.location.address})
+				$(page).find("#venuesList").append listitems
+				lazyLoad()
 
 	kikItCard = ->
 		# send a message

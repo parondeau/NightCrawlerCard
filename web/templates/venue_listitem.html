@@ -1,5 +1,5 @@
-<li class="app-button" data-target="venuePage">
-	<img src="<%= imageUrl %>">
+<li class="app-button" data-target="venuePage" onclick="App.load('venuePage', <%= index %>);">
+	<img class="lazy" data-id="<%= id %>" src="/img/icon.png">
 	<h1><%= name %></h1>
-	<p><%= description %></p>
+	<p><%= location %></p>
 </li>
