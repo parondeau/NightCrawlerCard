@@ -28,15 +28,27 @@
       }
     };
     kikItCard = function() {
-      return cards.kik.send({
-        title: 'test1',
-        text: 'test2',
-        pic: 'http://4.bp.blogspot.com/-j49xTVdZe7g/TVnmq6phXxI/AAAAAAAABpA/Pm45FErBfQQ/s400/hopkins%2Bduck.jpg',
-        noForward: false,
-        data: {
-          some: "json"
-        }
-      });
+      if (cards.kik) {
+        return cards.kik.send({
+          title: 'test1',
+          text: 'test2',
+          pic: 'http://4.bp.blogspot.com/-j49xTVdZe7g/TVnmq6phXxI/AAAAAAAABpA/Pm45FErBfQQ/s400/hopkins%2Bduck.jpg',
+          noForward: false,
+          data: {
+            someData: "json"
+          }
+        });
+      }
+    };
+    restoreAppSession = function() {
+      var err;
+
+      try {
+        return App.restore();
+      } catch (_error) {
+        err = _error;
+        return App.load("home");
+      }
     };
     App.populator("home", function(page) {
       $(page).find('#venueSearchButton').on('click', function(event) {
@@ -53,25 +65,11 @@
     App.populator("venuePage", function(page) {
       return $(page).find('#kikBtn').on('click', kikItCard);
     });
-    restoreAppSession = function() {
-      var err;
-
-      try {
-        return App.restore();
-      } catch (_error) {
-        err = _error;
-        return App.load("home");
-      }
-    };
-    if (!cards.kik) {
+    if (!cards.kik || !cards.kik.message) {
       return restoreAppSession();
     } else {
-      if (!cards.kik.message) {
-        return restoreAppSession();
-      } else {
-        alert(cards.kik.message);
-        return $(".specificDescriptionInner p").append("yes?");
-      }
+      console.log(cards.kik.message.someData);
+      return App.load("venuePage", cards.kik.message);
     }
   })(App);
 

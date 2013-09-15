@@ -12,13 +12,20 @@
 				lazyLoad()
 
 	kikItCard = ->
-		# send a message
-		cards.kik.send
-			title: 'test1'
-			text: 'test2'
-			pic: 'http://4.bp.blogspot.com/-j49xTVdZe7g/TVnmq6phXxI/AAAAAAAABpA/Pm45FErBfQQ/s400/hopkins%2Bduck.jpg'
-			noForward: false
-			data: {some: "json"}
+		if cards.kik
+			# send a message
+			cards.kik.send
+				title: 'test1'
+				text: 'test2'
+				pic: 'http://4.bp.blogspot.com/-j49xTVdZe7g/TVnmq6phXxI/AAAAAAAABpA/Pm45FErBfQQ/s400/hopkins%2Bduck.jpg'
+				noForward: false
+				data: {someData: "json"}
+
+	restoreAppSession = ->
+		try
+			App.restore()
+		catch err
+			App.load "home"
 
 	App.populator "home", (page) ->
 		$(page).find('#venueSearchButton').on 'click', (event) ->
@@ -33,19 +40,9 @@
 	App.populator "venuePage", (page) ->
 		$(page).find('#kikBtn').on 'click', kikItCard
 	
-	restoreAppSession = ->
-		try
-			App.restore()
-		catch err
-			App.load "home"
-
-	if not cards.kik
+	if not cards.kik or not cards.kik.message
 		restoreAppSession()
-	else 
-		if not cards.kik.message
-			restoreAppSession()
-		else
-			alert cards.kik.message 
-			$(".specificDescriptionInner p").append "yes?"
-			# App.load 
+	else
+		console.log cards.kik.message.someData
+		App.load "venuePage", cards.kik.message
 ) App
