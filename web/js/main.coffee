@@ -1,14 +1,14 @@
+this.barsList = null
 ((App) ->
-	barsList = null
 	onSearch = (page) ->
 		query = $(page).find('#venueSearchQuery').val()
 		if query
 			getBars query, (err, venues) ->
-				barsList = venues
+				this.barsList = venues
 				listitems = ""
 				venues.forEach (venue, index) ->
 					listitems += render('venue_listitem', {index: index, name: venue.name, id: venue.id, location: venue.location.address})
-				$(page).find("#venuesList").append listitems
+				$(page).find("#venuesList").html listitems
 				lazyLoad()
 
 	kikItCard = ->
@@ -37,7 +37,7 @@
 				, (err) -> 
 					console.log err
 	
-	App.populator "venuePage", (page) ->
+	App.populator "venuePage", (page, index, photourl) ->
 		$(page).find('#kikBtn').on 'click', kikItCard
 	
 	if not cards.kik or not cards.kik.message

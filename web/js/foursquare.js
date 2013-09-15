@@ -1,3 +1,4 @@
+
 var CLIENT_ID = 'K3POJ3HZJ5CM5QKVNIOT4CSJZBN3K4ERJWKQDSZRPAU0OV13',
 		CLIENT_SECRET = '5PHTEPTBXOKA02PNOZRUQWIFZVFIJQR2A0D4CEGTGY40U0NA',
 		authParam = "client_id=" + CLIENT_ID + "&client_secret=" + CLIENT_SECRET,
@@ -19,13 +20,18 @@ function getBars(near, callback) {
 	});
 }
 
-function getBarImage(id, callback) {
-	var url = "https://api.foursquare.com/v2/venues/" + id + "/photos?" + authParam + "&" + dateParam;
-	$.getJSON(url, function(data) {
-		if (data.meta.code == 200 && data.response.photos) {
-			var photo = data.response.photos.items[0],
-					photoUrl = (photo) ? photo.prefix + '200x200' + photo.suffix : null;
-			callback(null, photoUrl);
-		} 
-	});
+function getBarImage(index, callback) {
+	if (barsList[index].photoUrl) {
+		callback(null, barsList[index].photoUrl);
+	} else {
+		var url = "https://api.foursquare.com/v2/venues/" + barsList[index].id + "/photos?" + authParam + "&" + dateParam;
+		$.getJSON(url, function(data) {
+			if (data.meta.code == 200 && data.response.photos) {
+				var photo = data.response.photos.items[0],
+						photoUrl = (photo) ? photo.prefix + '200x200' + photo.suffix : null;
+				barsList[index].photoUrl = photoUrl;
+				callback(null, photoUrl);
+			} 
+		});
+	}
 }
