@@ -2,8 +2,8 @@
 <html manifest="cache.manifest">
 	<head>
 		<!-- Card info -->
-		<title>Starter Kit</title>
-		<meta name="description" content="My amazing card!">
+		<title>NightCrawler</title>
+		<meta name="description" content="Enter the good description">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<meta name="kik-prefer" content="true">
 		<link rel="kik-icon" href="/img/icon.png">
@@ -11,6 +11,21 @@
 		<!-- Styles -->
 		<link rel="stylesheet" href="http://cdn.kik.com/app/1/default.css">
 		<link rel="stylesheet" href="/css/styles.css">
+
+
+        <!--  For Twitter API -->          
+        <script type="text/javascript" src="js/sha1.js"></script>
+        <script type="text/javascript" src="js/codebird.js"></script>
+		
+
+		<!-- MAPS  -->
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCReRLRZaLnk1-rwg9ui1U-rjhzQUEQ7s4&sensor=true"></script>
+		
+		<!-- JS -->
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+
+
 	</head>
 
 	<body>
@@ -18,11 +33,24 @@
 
 		<div class="app-page" data-page="home">
 			<div class="app-topbar">
-				<div class="app-title">Home page</div>
+				<div class="app-title">NightCrawler</div>
 			</div>
 			<div class="app-content">
 				<div class="app-section">
-					<div class="app-button" data-target="page2">Go to Page 2</div>
+					<div id="formBox">
+						<div align="center">
+							<div class="input-prepend" style="margin-top:20px;">
+								<span class="add-on">@</span>
+								<input class="span2" id="usrName" value="vimota" type="text" placeholder="Username">
+							</div>
+							<div>
+								<input class="input-medium" id="usrLoc" value="Toronto" style="width:182px" type="text" placeholder="Location">
+							</div>
+							<div>
+								<div class="app-button" data-target="page2">Connect & Search</button>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -36,10 +64,7 @@
 				Page 2 is lonely
 			</div>
 		</div>
-
-		<!-- Scripts -->
 		<script src="/zerver/API.js"></script>
-		<script src="http://zeptojs.com/zepto.min.js"></script>
 		<script src="http://cdn.kik.com/cards/0/cards.js"></script>
 		<script src="http://cdn.kik.com/app/1/app.js"></script>
 		<script src="/js/main.js"></script>
