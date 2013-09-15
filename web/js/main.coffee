@@ -46,24 +46,32 @@
 		console.log venue
 		venueIndex = venue.index
 		done = (venue) ->
-			$(page).find('#venueName').text venue.name
-			$(page).find('#venueDesc').text venue.description
-			$(page).find('#venuePhoto')[0].src = venue.photo
-			$(page).find('#kikBtn').on 'click', =>
-				kikItCard venue
-			$(page).find('#venueName').on 'click', =>
-				linkToFoursquare venue
+			if venue.name
+				$(page).find('#venueName').text venue.name
+				$(page).find('#venueDesc').text venue.description
+				$(page).find('#venuePhoto')[0].src = venue.photo
+				$(page).find('#kikBtn').on 'click', =>
+					kikItCard venue
+				$(page).find('#venueName').on 'click', =>
+					linkToFoursquare venue
+			else
+				App.load "home", "slide-left"
 
 
 		if venue.external
 			$(page).find('#backToHome').on 'click', (e) ->
 				App.load('home')
+			done venue
 		else if barsList
 			venue = barsList[venueIndex];
 			if not venue.description or not venue.photo
 				getBarData venueIndex, (err, venue) ->
-					return done venue
-		done venue
+					done venue
+			else
+			done venue			
+		else
+			done venue
+		
 		
 	if not cards.kik or not cards.kik.message
 		restoreAppSession()

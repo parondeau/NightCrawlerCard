@@ -75,29 +75,38 @@
       done = function(venue) {
         var _this = this;
 
-        $(page).find('#venueName').text(venue.name);
-        $(page).find('#venueDesc').text(venue.description);
-        $(page).find('#venuePhoto')[0].src = venue.photo;
-        $(page).find('#kikBtn').on('click', function() {
-          return kikItCard(venue);
-        });
-        return $(page).find('#venueName').on('click', function() {
-          return linkToFoursquare(venue);
-        });
+        if (venue.name) {
+          $(page).find('#venueName').text(venue.name);
+          $(page).find('#venueDesc').text(venue.description);
+          $(page).find('#venuePhoto')[0].src = venue.photo;
+          $(page).find('#kikBtn').on('click', function() {
+            return kikItCard(venue);
+          });
+          return $(page).find('#venueName').on('click', function() {
+            return linkToFoursquare(venue);
+          });
+        } else {
+          return App.load("home", "slide-left");
+        }
       };
       if (venue.external) {
         $(page).find('#backToHome').on('click', function(e) {
           return App.load('home');
         });
+        return done(venue);
       } else if (barsList) {
         venue = barsList[venueIndex];
         if (!venue.description || !venue.photo) {
           getBarData(venueIndex, function(err, venue) {
             return done(venue);
           });
+        } else {
+
         }
+        return done(venue);
+      } else {
+        return done(venue);
       }
-      return done(venue);
     });
     if (!cards.kik || !cards.kik.message) {
       return restoreAppSession();
