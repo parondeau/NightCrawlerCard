@@ -4,6 +4,7 @@ this.barsList = null
 		query = $(page).find('#venueSearchQuery').val()
 		if query
 			getBars query, (err, venues) ->
+				$(".app-section").first().removeClass("invalid");
 				this.barsList = venues
 				listitems = ""
 				venues.forEach (venue, index) ->

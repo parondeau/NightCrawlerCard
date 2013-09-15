@@ -13,6 +13,7 @@
         return getBars(query, function(err, venues) {
           var listitems;
 
+          $(".app-section").first().removeClass("invalid");
           this.barsList = venues;
           listitems = "";
           venues.forEach(function(venue, index) {

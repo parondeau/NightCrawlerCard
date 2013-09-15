@@ -17,6 +17,12 @@ function getBars(near, callback) {
 		} else {
 			callback(data.meta);
 		}
+	})
+	.fail(function(err){
+		error = JSON.parse(err.responseText);
+		if (error.meta.code == 400){
+			$(".app-section").first().addClass("invalid");
+		}
 	});
 }
 
