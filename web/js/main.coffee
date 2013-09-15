@@ -12,8 +12,7 @@
 				$(page).find("#venuesList").html listitems
 				lazyLoad()
 
-	kikItCard = (index) ->
-		venue = barsList[index]
+	kikItCard = (venue) ->
 		if cards.kik
 			# send a message
 			cards.kik.send
@@ -21,12 +20,8 @@
 				text: venue.description
 				pic: venue.photo
 				noForward: false
-				data: { venue: {
-						name: venue.name
-						photo: venue.photo
-						description: venue.description
-						location: venue.location.address
-					}}
+				data: 
+					venue: venue
 
 	restoreAppSession = ->
 		try
@@ -45,19 +40,19 @@
 					console.log err
 	
 	App.populator "venuePage", (page, venue) ->
+		console.log venue
 		venueIndex = venue.index
-		$(page).find('#kikBtn').on 'click', =>
-			kikItCard venueIndex
 		done = (venue) ->
 			$(page).find('#venueName').text venue.name
 			$(page).find('#venueDesc').text venue.description
 			$(page).find('#venuePhoto')[0].src = venue.photo
+			$(page).find('#kikBtn').on 'click', =>
+				kikItCard venue
+
 
 		if venue.external
 			$(page).find('#backToHome').on 'click', (e) ->
-			# preventDefault e
-			cards.kik.message = null
-			App.load('home')
+				App.load('home')
 		else if barsList
 			venue = barsList[venueIndex];
 			if not venue.description or not venue.photo
@@ -69,6 +64,6 @@
 		restoreAppSession()
 	else
 		venue = cards.kik.message.venue
-		console.log cards.kik.message.venue
+		console.log cards.kik.message.venue.name
 		App.load "venuePage", {external: true, name: venue.name,  photo: venue.photo,  description: venue.description, location: venue.location}
 ) App

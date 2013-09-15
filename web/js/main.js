@@ -29,10 +29,7 @@
         });
       }
     };
-    kikItCard = function(index) {
-      var venue;
-
-      venue = barsList[index];
+    kikItCard = function(venue) {
       if (cards.kik) {
         return cards.kik.send({
           title: venue.name,
@@ -40,12 +37,7 @@
           pic: venue.photo,
           noForward: false,
           data: {
-            venue: {
-              name: venue.name,
-              photo: venue.photo,
-              description: venue.description,
-              location: venue.location.address
-            }
+            venue: venue
           }
         });
       }
@@ -73,22 +65,24 @@
       }
     });
     App.populator("venuePage", function(page, venue) {
-      var done, venueIndex,
-        _this = this;
+      var done, venueIndex;
 
+      console.log(venue);
       venueIndex = venue.index;
-      $(page).find('#kikBtn').on('click', function() {
-        return kikItCard(venueIndex);
-      });
       done = function(venue) {
+        var _this = this;
+
         $(page).find('#venueName').text(venue.name);
         $(page).find('#venueDesc').text(venue.description);
-        return $(page).find('#venuePhoto')[0].src = venue.photo;
+        $(page).find('#venuePhoto')[0].src = venue.photo;
+        return $(page).find('#kikBtn').on('click', function() {
+          return kikItCard(venue);
+        });
       };
       if (venue.external) {
-        $(page).find('#backToHome').on('click', function(e) {});
-        cards.kik.message = null;
-        App.load('home');
+        $(page).find('#backToHome').on('click', function(e) {
+          return App.load('home');
+        });
       } else if (barsList) {
         venue = barsList[venueIndex];
         if (!venue.description || !venue.photo) {
@@ -103,7 +97,7 @@
       return restoreAppSession();
     } else {
       venue = cards.kik.message.venue;
-      console.log(cards.kik.message.venue);
+      console.log(cards.kik.message.venue.name);
       return App.load("venuePage", {
         external: true,
         name: venue.name,

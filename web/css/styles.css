@@ -43,13 +43,15 @@
     #venuePage .app-content .app-section.specificDescription .specificDescriptionInner img {
       height: 125px;
       width: 125px;
-      display: inline; }
+      float: left;
+      margin-right: 10px; }
     #venuePage .app-content .app-section.specificDescription .specificDescriptionInner h1 {
       color: #444;
       margin: 0;
-      font-size: 45px;
-      display: inline;
+      font-size: 25px;
       vertical-align: top; }
     #venuePage .app-content .app-section.specificDescription .specificDescriptionInner p {
       color: #999;
-      font-size: 20px; }
+      font-size: 20px;
+      display: inline-block;
+      margin-top: 5px; }
