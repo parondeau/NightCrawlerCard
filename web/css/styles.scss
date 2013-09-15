@@ -1,0 +1,19 @@
+#locationSearchPage{
+	text-align: center;
+}
+
+#venueListPage{
+	.app-list{
+		li{
+			padding: 5px;
+			height: 90px;
+			line-height: 0px;
+			img{
+				height: 80px;
+				width: 80px;
+				float: left;
+				margin-right: 10px;
+			}
+		}
+	}
+}

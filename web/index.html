@@ -14,47 +14,39 @@
 		
 		<!-- JS -->
 		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-
-
-
 	</head>
-
 	<body>
 		<!-- Pages -->
 
 		<div class="app-page" data-page="home">
 			<div class="app-topbar">
-				<div class="app-title">NightCrawler</div>
+				<div class="app-title">Night Crawler</div>
 			</div>
-			<div class="test"></div>
 			<div class="app-content">
 				<div class="app-section">
-					<div id="formBox">
-						<div align="center">
-							<div class="input-prepend" style="margin-top:20px;">
-								<span class="add-on">@</span>
-								<input class="span2" id="usrName" value="vimota" type="text" placeholder="Username">
-							</div>
-							<div>
-								<input class="input-medium" id="usrLoc" value="Toronto" style="width:182px" type="text" placeholder="Location">
-							</div>
-							<div>
-								<div class="app-button" data-target="page2">Connect & Search</button>
-							</div>
-						</div>
+					<div id="locationSearchPage">
+						<input class="app-input" type="text" placeholder="Enter Your Location">
+						<div class="app-button" data-target="page2">Search</button>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<div class="app-page" data-page="page2">
-			<div class="test"></div>
+		<div class="app-page" data-page="page2" id="venueListPage">
 			<div class="app-topbar">
 				<div class="app-button left" data-back="true">Back</div>
-				<div class="app-title">Page 2</div>
+				<div class="app-title">Venues</div>
 			</div>
 			<div class="app-content">
-				Page 2 is lonely
+				<ul class="app-list">
+				  <li>
+				  	<img src="img/icon.png">
+				  	<h1>Item 1</h1>
+				  	<p>Enter Description</p>
+				  </li>
+				  <li>Item 2</li>
+				  <li>Item 3</li>
+				</ul>
 			</div>
 		</div>
 		<script src="/zerver/API.js"></script>

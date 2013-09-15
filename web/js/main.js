@@ -4,13 +4,14 @@
     var err;
 
     App.populator("home", function(page) {
-      navigator.geolocation.getCurrentPosition(function(success) {
-        console.log(success);
-        return $('.app-content').append("long: " + success.coords.longitude + " lat: " + success.coords.latitude);
-      }, function(err) {
-        return console.log("f");
-      });
-      return console.log("test1");
+      if (navigator.geolocation) {
+        return navigator.geolocation.getCurrentPosition(function(success) {
+          console.log(success);
+          return $('.app-content').append("long: " + success.coords.longitude + " lat: " + success.coords.latitude);
+        }, function(err) {
+          return console.log("f");
+        });
+      }
     });
     App.populator("page2", function(page) {
       return console.log("test2");
