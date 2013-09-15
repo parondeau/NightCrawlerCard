@@ -29,15 +29,15 @@
         });
       }
     };
-    kikItCard = function() {
+    kikItCard = function(index) {
       var venue;
 
-      venue = barList[index];
+      venue = barsList[index];
       if (cards.kik) {
         return cards.kik.send({
-          title: 'test1',
-          text: 'test2',
-          pic: 'http://4.bp.blogspot.com/-j49xTVdZe7g/TVnmq6phXxI/AAAAAAAABpA/Pm45FErBfQQ/s400/hopkins%2Bduck.jpg',
+          title: venue.name,
+          text: venue.description,
+          pic: venue.photo,
           noForward: false,
           data: {
             venue: {
@@ -73,9 +73,13 @@
       }
     });
     App.populator("venuePage", function(page, venue) {
-      var done, venueIndex;
+      var done, venueIndex,
+        _this = this;
 
-      $(page).find('#kikBtn').on('click', kikItCard);
+      venueIndex = venue.index;
+      $(page).find('#kikBtn').on('click', function() {
+        return kikItCard(venueIndex);
+      });
       done = function(venue) {
         $(page).find('#venueName').text(venue.name);
         $(page).find('#venueDesc').text(venue.description);
@@ -86,8 +90,7 @@
         cards.kik.message = null;
         App.load('home');
       } else if (barsList) {
-        venueIndex = venue.index;
-        venue = barsList[venue.index];
+        venue = barsList[venueIndex];
         if (!venue.description || !venue.photo) {
           getBarData(venueIndex, function(err, venue) {
             return done(venue);
