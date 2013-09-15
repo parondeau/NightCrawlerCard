@@ -11,6 +11,14 @@
 				$(page).find("#venuesList").append listitems
 				lazyLoad()
 
+	kikItCard = ->
+		# send a message
+		cards.kik.send
+			title: 'test1'
+			text: 'test2'
+			pic: 'http://4.bp.blogspot.com/-j49xTVdZe7g/TVnmq6phXxI/AAAAAAAABpA/Pm45FErBfQQ/s400/hopkins%2Bduck.jpg'
+			noForward: false
+
 	App.populator "home", (page) ->
 		$(page).find('#venueSearchButton').on 'click', (event) ->
 			onSearch page
@@ -21,9 +29,10 @@
 				, (err) -> 
 					console.log err
 	
-	App.populator "page2", (page) ->
-		console.log "test2"
+	App.populator "venuePage", (page) ->
+		$(page).find('#kikBtn').on 'click', kikItCard
 	
+
 	try
 		App.restore()
 	catch err
