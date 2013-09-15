@@ -1,18 +1,45 @@
-#locationSearchPage {
-  text-align: center; }
-  #locationSearchPage .app-list li {
-    padding: 5px;
+.app-content .app-section .app-list li {
+  padding: 5px;
+  line-height: normal;
+  height: 100%; }
+  .app-content .app-section .app-list li img {
     height: 80px;
-    line-height: normal; }
-    #locationSearchPage .app-list li img {
-      height: 80px;
-      width: 80px;
-      float: left;
-      margin-right: 10px; }
-    #locationSearchPage .app-list li h1 {
+    width: 80px;
+    float: left;
+    margin-right: 10px; }
+  .app-content .app-section .app-list li h1 {
+    color: #444;
+    margin: 0;
+    font-size: 25px; }
+  .app-content .app-section .app-list li p {
+    color: #999;
+    font-size: 13px; }
+
+#venuePage .app-topbar #kikBtn {
+  background: url("../img/kik_it_white_name.png");
+  height: 20px;
+  width: 52px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 12px 0px;
+  background-size: 40px;
+  background-repeat: no-repeat; }
+#venuePage .app-content .app-section.specificDescription {
+  padding: 5px; }
+  #venuePage .app-content .app-section.specificDescription .specificDescriptionInner {
+    line-height: normal;
+    height: 100%; }
+    #venuePage .app-content .app-section.specificDescription .specificDescriptionInner img {
+      height: 100px;
+      width: 100px;
+      display: inline; }
+    #venuePage .app-content .app-section.specificDescription .specificDescriptionInner h1 {
       color: #444;
       margin: 0;
-      font-size: 25px; }
-    #locationSearchPage .app-list li p {
+      font-size: 45px;
+      display: inline;
+      vertical-align: top; }
+    #venuePage .app-content .app-section.specificDescription .specificDescriptionInner p {
       color: #999;
-      font-size: 13px; }
+      font-size: 20px; }

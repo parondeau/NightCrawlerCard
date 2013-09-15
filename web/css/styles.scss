@@ -1,24 +1,62 @@
-#locationSearchPage{
-	text-align: center;
-	.app-list{
-		li{
-			padding: 5px;
+.app-content .app-section .app-list{
+	li{
+		padding: 5px;
+		line-height: normal;
+		height: 100%;
+		img{
 			height: 80px;
-			line-height: normal;
-			img{
-				height: 80px;
-				width: 80px;
-				float: left;
-				margin-right: 10px;
-			}
-			h1{
-				color: #444;
-				margin: 0;
-				font-size: 25px;
-			}
-			p{
-				color: #999;
-				font-size: 13px;
+			width: 80px;
+			float: left;
+			margin-right: 10px;
+		}
+		h1{
+			color: #444;
+			margin: 0;
+			font-size: 25px;
+		}
+		p{
+			color: #999;
+			font-size: 13px;
+		}
+	}
+}
+
+#venuePage{
+	.app-topbar{
+		#kikBtn{
+			background: url('../img/kik_it_white_name.png');
+			height: 20px;
+			width: 52px;
+			position: absolute;
+			right: 0;
+			top: 0;
+			margin: 12px 0px;
+			background-size: 40px;
+			background-repeat: no-repeat;
+		}
+	}
+	.app-content .app-section {
+		&.specificDescription {
+			padding: 5px;
+			.specificDescriptionInner{
+				line-height: normal;
+				height: 100%;
+				img{
+					height: 100px;
+					width: 100px;
+					display: inline;
+				}
+				h1{
+					color: #444;
+					margin: 0;
+					font-size: 45px;
+					display: inline;
+					vertical-align: top;
+				}
+				p{
+					color: #999;
+					font-size: 20px;
+				}
 			}
 		}
 	}

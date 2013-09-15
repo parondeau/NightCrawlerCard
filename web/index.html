@@ -22,7 +22,7 @@
 	<body>
 		<!-- Pages -->
 
-		<div class="app-page" data-page="home" id="locationSearchPage">
+		<div class="app-page" data-page="home">
 			<div class="app-topbar">
 				<div class="app-title">Night Crawler</div>
 			</div>
@@ -35,7 +35,7 @@
 				</div>
 				<div class="app-section">
 					<ul class="app-list">
-					  <li>
+					  <li class="app-button" data-target="venuePage">
 					  	<img src="img/icon.png">
 					  	<h1>Item 1</h1>
 					  	<p>Enter Description</p>
@@ -47,21 +47,20 @@
 			</div>
 		</div>
 
-		<div class="app-page" data-page="page2" id="venueListPage">
+		<div class="app-page" data-page="venuePage" id="venuePage">
 			<div class="app-topbar">
 				<div class="app-button left" data-back="true">Back</div>
 				<div class="app-title">Venues</div>
+				<div data-back="false" id="kikBtn"></div>
 			</div>
 			<div class="app-content">
-				<ul class="app-list">
-				  <li>
+				<div class="app-section specificDescription">
+					<div class="specificDescriptionInner">
 				  	<img src="img/icon.png">
 				  	<h1>Item 1</h1>
 				  	<p>Enter Description</p>
-				  </li>
-				  <li>Item 2</li>
-				  <li>Item 3</li>
-				</ul>
+					</div>
+				</div>
 			</div>
 		</div>
 		<script src="/zerver/API.js"></script>
