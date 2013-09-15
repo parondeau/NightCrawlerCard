@@ -72,17 +72,29 @@
         });
       }
     });
-    App.populator("venuePage", function(page, index, photourl) {
-      $(page).find('#kikBtn').on('click', function() {
-        return kikItCard(index);
-      });
-      return $(page).find('#backToHome').on('click', function(e) {
-        if (cards.kik && cards.kik.message) {
-          cards.kik.message = null;
-          console.log("yeppers");
-          return App.load('home');
+    App.populator("venuePage", function(page, venue) {
+      var done, venueIndex;
+
+      $(page).find('#kikBtn').on('click', kikItCard);
+      done = function(venue) {
+        $(page).find('#venueName').text(venue.name);
+        $(page).find('#venueDesc').text(venue.description);
+        return $(page).find('#venuePhoto')[0].src = venue.photo;
+      };
+      if (venue.external) {
+        $(page).find('#backToHome').on('click', function(e) {});
+        cards.kik.message = null;
+        App.load('home');
+      } else if (barsList) {
+        venueIndex = venue.index;
+        venue = barsList[venue.index];
+        if (!venue.description || !venue.photo) {
+          getBarData(venueIndex, function(err, venue) {
+            return done(venue);
+          });
         }
-      });
+      }
+      return done(venue);
     });
     if (!cards.kik || !cards.kik.message) {
       return restoreAppSession();
