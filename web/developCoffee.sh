@@ -1,0 +1,1 @@
+coffee -cw $(find . -type f -name '*.coffee')
