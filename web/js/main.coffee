@@ -12,6 +12,7 @@ this.barsList = null
 				lazyLoad()
 
 	kikItCard = ->
+		venue = barList[index]
 		if cards.kik
 			# send a message
 			cards.kik.send
@@ -19,7 +20,12 @@ this.barsList = null
 				text: 'test2'
 				pic: 'http://4.bp.blogspot.com/-j49xTVdZe7g/TVnmq6phXxI/AAAAAAAABpA/Pm45FErBfQQ/s400/hopkins%2Bduck.jpg'
 				noForward: false
-				data: {someData: "json"}
+				data: { venue: {
+						name: venue.name
+						photo: venue.photo
+						description: venue.description
+						location: venue.location.address
+					}}
 
 	restoreAppSession = ->
 		try
@@ -38,12 +44,19 @@ this.barsList = null
 					console.log err
 	
 	App.populator "venuePage", (page, index, photourl) ->
-		$(page).find('#kikBtn').on 'click', kikItCard
+		$(page).find('#kikBtn').on 'click', ->
+			kikItCard index
+		$(page).find('#backToHome').on 'click', (e) ->
+			# preventDefault e
+			if cards.kik and cards.kik.message
+				cards.kik.message = null
+				console.log "yeppers"
+				App.load('home')
 	
 	if not cards.kik or not cards.kik.message
 		restoreAppSession()
 	else
-		console.log cards.kik.message.someData
-		# App.load "venuePage", cards.kik.message
-		App.load "home"
+		venue = cards.kik.message.venue
+		console.log cards.kik.message.venue
+		App.load "venuePage", {external: true, name: venue.name,  photo: venue.photo,  description: venue.description, location: venue.location}
 ) App

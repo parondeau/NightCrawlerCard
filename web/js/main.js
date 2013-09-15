@@ -3,7 +3,7 @@
   this.barsList = null;
 
   (function(App) {
-    var kikItCard, onSearch, restoreAppSession;
+    var kikItCard, onSearch, restoreAppSession, venue;
 
     onSearch = function(page) {
       var query;
@@ -29,6 +29,9 @@
       }
     };
     kikItCard = function() {
+      var venue;
+
+      venue = barList[index];
       if (cards.kik) {
         return cards.kik.send({
           title: 'test1',
@@ -36,7 +39,12 @@
           pic: 'http://4.bp.blogspot.com/-j49xTVdZe7g/TVnmq6phXxI/AAAAAAAABpA/Pm45FErBfQQ/s400/hopkins%2Bduck.jpg',
           noForward: false,
           data: {
-            someData: "json"
+            venue: {
+              name: venue.name,
+              photo: venue.photo,
+              description: venue.description,
+              location: venue.location.address
+            }
           }
         });
       }
@@ -64,13 +72,29 @@
       }
     });
     App.populator("venuePage", function(page, index, photourl) {
-      return $(page).find('#kikBtn').on('click', kikItCard);
+      $(page).find('#kikBtn').on('click', function() {
+        return kikItCard(index);
+      });
+      return $(page).find('#backToHome').on('click', function(e) {
+        if (cards.kik && cards.kik.message) {
+          cards.kik.message = null;
+          console.log("yeppers");
+          return App.load('home');
+        }
+      });
     });
     if (!cards.kik || !cards.kik.message) {
       return restoreAppSession();
     } else {
-      console.log(cards.kik.message.someData);
-      return App.load("home");
+      venue = cards.kik.message.venue;
+      console.log(cards.kik.message.venue);
+      return App.load("venuePage", {
+        external: true,
+        name: venue.name,
+        photo: venue.photo,
+        description: venue.description,
+        location: venue.location
+      });
     }
   })(App);
 
