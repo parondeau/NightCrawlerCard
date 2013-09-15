@@ -44,5 +44,6 @@ this.barsList = null
 		restoreAppSession()
 	else
 		console.log cards.kik.message.someData
-		App.load "venuePage", cards.kik.message
+		# App.load "venuePage", cards.kik.message
+		App.load "home"
 ) App

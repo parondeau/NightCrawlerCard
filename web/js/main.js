@@ -70,7 +70,7 @@
       return restoreAppSession();
     } else {
       console.log(cards.kik.message.someData);
-      return App.load("venuePage", cards.kik.message);
+      return App.load("home");
     }
   })(App);
 
