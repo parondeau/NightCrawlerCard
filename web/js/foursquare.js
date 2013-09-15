@@ -44,6 +44,7 @@ function getBarData(index, callback) {
 					photoUrl = (photo) ? photo.prefix + '200x200' + photo.suffix : null;
 			barsList[index].photo = photoUrl;
 			barsList[index].description = data.response.venue.description || "";
+			barsList[index].url = data.response.venue.shortUrl
 			callback(null, barsList[index]);
 		} 
 	});

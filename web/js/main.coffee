@@ -23,6 +23,9 @@
 				data: 
 					venue: venue
 
+	linkToFoursquare = (venue) ->
+		window.location = venue.url
+
 	restoreAppSession = ->
 		try
 			App.restore()
@@ -48,6 +51,8 @@
 			$(page).find('#venuePhoto')[0].src = venue.photo
 			$(page).find('#kikBtn').on 'click', =>
 				kikItCard venue
+			$(page).find('#venueName').on 'click', =>
+				linkToFoursquare venue
 
 
 		if venue.external

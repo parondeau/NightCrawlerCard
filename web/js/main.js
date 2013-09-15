@@ -3,7 +3,7 @@
   this.barsList = null;
 
   (function(App) {
-    var kikItCard, onSearch, restoreAppSession, venue;
+    var kikItCard, linkToFoursquare, onSearch, restoreAppSession, venue;
 
     onSearch = function(page) {
       var query;
@@ -42,6 +42,9 @@
         });
       }
     };
+    linkToFoursquare = function(venue) {
+      return window.location = venue.url;
+    };
     restoreAppSession = function() {
       var err;
 
@@ -75,8 +78,11 @@
         $(page).find('#venueName').text(venue.name);
         $(page).find('#venueDesc').text(venue.description);
         $(page).find('#venuePhoto')[0].src = venue.photo;
-        return $(page).find('#kikBtn').on('click', function() {
+        $(page).find('#kikBtn').on('click', function() {
           return kikItCard(venue);
+        });
+        return $(page).find('#venueName').on('click', function() {
+          return linkToFoursquare(venue);
         });
       };
       if (venue.external) {
