@@ -3,7 +3,7 @@
   this.barsList = null;
 
   (function(App) {
-    var err, kikItCard, onSearch;
+    var kikItCard, onSearch, restoreAppSession;
     onSearch = function(page) {
       var query;
       query = $(page).find('#venueSearchQuery').val();
@@ -30,7 +30,10 @@
         title: 'test1',
         text: 'test2',
         pic: 'http://4.bp.blogspot.com/-j49xTVdZe7g/TVnmq6phXxI/AAAAAAAABpA/Pm45FErBfQQ/s400/hopkins%2Bduck.jpg',
-        noForward: false
+        noForward: false,
+        data: {
+          some: "json"
+        }
       });
     };
     App.populator("home", function(page) {
@@ -48,11 +51,24 @@
     App.populator("venuePage", function(page, index, photourl) {
       return $(page).find('#kikBtn').on('click', kikItCard);
     });
-    try {
-      return App.restore();
-    } catch (_error) {
-      err = _error;
-      return App.load("home");
+    restoreAppSession = function() {
+      var err;
+      try {
+        return App.restore();
+      } catch (_error) {
+        err = _error;
+        return App.load("home");
+      }
+    };
+    if (!cards.kik) {
+      return restoreAppSession();
+    } else {
+      if (!cards.kik.message) {
+        return restoreAppSession();
+      } else {
+        alert(cards.kik.message);
+        return $(".specificDescriptionInner p").append("yes?");
+      }
     }
   })(App);
 

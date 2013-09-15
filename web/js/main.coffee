@@ -18,6 +18,7 @@ this.barsList = null
 			text: 'test2'
 			pic: 'http://4.bp.blogspot.com/-j49xTVdZe7g/TVnmq6phXxI/AAAAAAAABpA/Pm45FErBfQQ/s400/hopkins%2Bduck.jpg'
 			noForward: false
+			data: {some: "json"}
 
 	App.populator "home", (page) ->
 		$(page).find('#venueSearchButton').on 'click', (event) ->
@@ -32,9 +33,19 @@ this.barsList = null
 	App.populator "venuePage", (page, index, photourl) ->
 		$(page).find('#kikBtn').on 'click', kikItCard
 	
+	restoreAppSession = ->
+		try
+			App.restore()
+		catch err
+			App.load "home"
 
-	try
-		App.restore()
-	catch err
-		App.load "home"
+	if not cards.kik
+		restoreAppSession()
+	else 
+		if not cards.kik.message
+			restoreAppSession()
+		else
+			alert cards.kik.message 
+			$(".specificDescriptionInner p").append "yes?"
+			# App.load 
 ) App
