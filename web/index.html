@@ -12,6 +12,7 @@
 		<link rel="stylesheet" href="http://cdn.kik.com/app/1/default.css">
 		<link rel="stylesheet" href="/css/styles.css">
 		<script type="text/javascript" src="js/foursquare.js"></script>
+		<script type="text/javascript" src="js/underscore.js"></script>
 
 		<!-- MAPS  -->
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCReRLRZaLnk1-rwg9ui1U-rjhzQUEQ7s4&sensor=true"></script>
@@ -29,19 +30,12 @@
 			<div class="app-content">
 				<div class="app-section">
 					<div>
-						<input class="app-input" type="text" placeholder="Enter Your City and Province">
-						<div class="app-button">Search</div>
+						<input id="venueSearchQuery" class="app-input" type="text" placeholder="Enter Your City and Province">
+						<div id="venueSearchButton" class="app-button">Search</div>
 					</div>
 				</div>
 				<div class="app-section">
 					<ul class="app-list">
-					  <li class="app-button" data-target="venuePage">
-					  	<img src="img/icon.png">
-					  	<h1>Item 1</h1>
-					  	<p>Enter Description</p>
-					  </li>
-					  <li>Item 2</li>
-					  <li>Item 3</li>
 					</ul>
 				</div>
 			</div>
