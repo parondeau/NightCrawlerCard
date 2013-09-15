@@ -1,18 +1,24 @@
 #locationSearchPage{
 	text-align: center;
-}
-
-#venueListPage{
 	.app-list{
 		li{
 			padding: 5px;
-			height: 90px;
-			line-height: 0px;
+			height: 80px;
+			line-height: normal;
 			img{
 				height: 80px;
 				width: 80px;
 				float: left;
 				margin-right: 10px;
+			}
+			h1{
+				color: #444;
+				margin: 0;
+				font-size: 25px;
+			}
+			p{
+				color: #999;
+				font-size: 13px;
 			}
 		}
 	}

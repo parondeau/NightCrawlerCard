@@ -1,12 +1,18 @@
 #locationSearchPage {
   text-align: center; }
-
-#venueListPage .app-list li {
-  padding: 5px;
-  height: 90px;
-  line-height: 0px; }
-  #venueListPage .app-list li img {
+  #locationSearchPage .app-list li {
+    padding: 5px;
     height: 80px;
-    width: 80px;
-    float: left;
-    margin-right: 10px; }
+    line-height: normal; }
+    #locationSearchPage .app-list li img {
+      height: 80px;
+      width: 80px;
+      float: left;
+      margin-right: 10px; }
+    #locationSearchPage .app-list li h1 {
+      color: #444;
+      margin: 0;
+      font-size: 25px; }
+    #locationSearchPage .app-list li p {
+      color: #999;
+      font-size: 13px; }
