@@ -37,9 +37,23 @@ this.barsList = null
 				, (err) -> 
 					console.log err
 	
-	App.populator "venuePage", (page, index, photourl) ->
+	App.populator "venuePage", (page, venue) ->
 		$(page).find('#kikBtn').on 'click', kikItCard
-	
+		done = (venue) ->
+			$(page).find('#venueName').text venue.name
+			$(page).find('#venueDesc').text venue.description
+			$(page).find('#venuePhoto')[0].src = venue.photo
+
+		if (venue.external)
+			console.log('external')
+		else if (barsList)
+			venueIndex = venue.index
+			venue = barsList[venue.index];
+			if not venue.description or not venue.photo
+				getBarData venueIndex, (err, venue) ->
+					return done venue
+		done venue
+		
 	if not cards.kik or not cards.kik.message
 		restoreAppSession()
 	else

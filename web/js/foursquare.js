@@ -21,17 +21,24 @@ function getBars(near, callback) {
 }
 
 function getBarImage(index, callback) {
-	if (barsList[index].photoUrl) {
-		callback(null, barsList[index].photoUrl);
+	if (barsList[index].photo) {
+		callback(null, barsList[index].photo);
 	} else {
-		var url = "https://api.foursquare.com/v2/venues/" + barsList[index].id + "/photos?" + authParam + "&" + dateParam;
-		$.getJSON(url, function(data) {
-			if (data.meta.code == 200 && data.response.photos) {
-				var photo = data.response.photos.items[0],
-						photoUrl = (photo) ? photo.prefix + '200x200' + photo.suffix : null;
-				barsList[index].photoUrl = photoUrl;
-				callback(null, photoUrl);
-			} 
+		getBarData(index, function(err, venue) {
+			if (!err) callback(null, venue.photo);
 		});
 	}
+}
+
+function getBarData(index, callback) {
+	var url = "https://api.foursquare.com/v2/venues/" + barsList[index].id + "?" + authParam + "&" + dateParam;
+	$.getJSON(url, function(data) {
+		if (data.meta.code == 200 && data.response.venue) {
+			var photo = data.response.venue.photos.groups[0].items[0],
+					photoUrl = (photo) ? photo.prefix + '200x200' + photo.suffix : null;
+			barsList[index].photo = photoUrl;
+			barsList[index].description = data.response.venue.description || "";
+			callback(null, barsList[index]);
+		} 
+	});
 }
