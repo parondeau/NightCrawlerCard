@@ -36,8 +36,8 @@ function lazyLoad() {
 
     function loadImage (el, fn) {
       var img = new Image()
-        , id = el.getAttribute('data-id');
-      getBarImage(id, function(src) {
+        , index = el.getAttribute('data-index');
+      getBarImage(index, function(err, src) {
         img.onload = function() {
           if (!! el.parent)
             el.parent.replaceChild(img, el)
@@ -78,6 +78,7 @@ function lazyLoad() {
       };
 
       processScroll();
+      addEventListener('touchmove',processScroll);
       addEventListener('scroll',processScroll);
 
   }(this);
