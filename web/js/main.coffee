@@ -9,9 +9,14 @@
 				listitems = ""
 				venues.forEach (venue, index) ->
 					listitems += render('venue_listitem', {index: index, name: venue.name, id: venue.id, location: venue.location.address})
-				$(page).find("#venuesList").html listitems
-				lazyLoad()
+					$(page).find("#venuesList").html listitems
+					lazyLoad()
+				container = $('.app-content')
+				scrollTo = $('#venueListSection')
 
+				container.animate
+					scrollTop: scrollTo.offset().top - container.offset().top + container.scrollTop()
+					
 	kikItCard = (venue) ->
 		if cards.kik
 			# send a message
@@ -54,9 +59,6 @@
 					kikItCard venue
 				$(page).find('#venueName').on 'click', =>
 					linkToFoursquare venue
-			else
-				App.load "home", "slide-left"
-
 
 		if venue.external
 			$(page).find('#backToHome').on 'click', (e) ->
@@ -68,10 +70,9 @@
 				getBarData venueIndex, (err, venue) ->
 					done venue
 			else
-			done venue			
-		else
 			done venue
-		
+		else
+			done venue		
 		
 	if not cards.kik or not cards.kik.message
 		restoreAppSession()

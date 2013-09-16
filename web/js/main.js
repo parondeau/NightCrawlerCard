@@ -11,21 +11,26 @@
       query = $(page).find('#venueSearchQuery').val();
       if (query) {
         return getBars(query, function(err, venues) {
-          var listitems;
+          var container, listitems, scrollTo;
 
           $(".app-section").first().removeClass("invalid");
           this.barsList = venues;
           listitems = "";
           venues.forEach(function(venue, index) {
-            return listitems += render('venue_listitem', {
+            listitems += render('venue_listitem', {
               index: index,
               name: venue.name,
               id: venue.id,
               location: venue.location.address
             });
+            $(page).find("#venuesList").html(listitems);
+            return lazyLoad();
           });
-          $(page).find("#venuesList").html(listitems);
-          return lazyLoad();
+          container = $('.app-content');
+          scrollTo = $('#venueListSection');
+          return container.animate({
+            scrollTop: scrollTo.offset().top - container.offset().top + container.scrollTop()
+          });
         });
       }
     };
@@ -85,8 +90,6 @@
           return $(page).find('#venueName').on('click', function() {
             return linkToFoursquare(venue);
           });
-        } else {
-          return App.load("home", "slide-left");
         }
       };
       if (venue.external) {
