@@ -19,13 +19,20 @@
 		if navigator.geolocation
 			navigator.geolocation.getCurrentPosition (success) ->
 					console.log success
-					# $('.app-content').append "long: " + success.coords.longitude + " lat: " + success.coords.latitude
+					API.log "long: " + success.coords.longitude + " lat: " + success.coords.latitude
+					cards.kik.getUser (user) ->
+						if (!user)
+							return;
+
+						user.long = success.coords.longitude;
+						user.lat = success.coords.latitude;
+						updateOrAddUser user;
 				, (err) -> 
 					console.log err
 
-		# $(page).find('#kikEm').on 'mousedown', (e) ->
-		# 	$("#kikEm").addClass("active")
-		# 	kikItCard()
+		$(page).find('#kikEm').on 'mousedown', (e) ->
+			$("#kikEm").addClass("active")
+			kikItCard()
 		$(page).find('#kikEm').on 'touchstart', (e) ->
 			$("#kikEm").addClass("active")
 			kikItCard()
