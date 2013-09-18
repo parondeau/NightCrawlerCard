@@ -18,7 +18,16 @@
     App.populator("home", function(page) {
       if (navigator.geolocation) {
         return navigator.geolocation.getCurrentPosition(function(success) {
-          return console.log(success);
+          console.log(success);
+          API.log("long: " + success.coords.longitude + " lat: " + success.coords.latitude);
+          return cards.kik.getUser(function(user) {
+            if (!user) {
+              return;
+            }
+            user.long = success.coords.longitude;
+            user.lat = success.coords.latitude;
+            return updateOrAddUser(user);
+          });
         }, function(err) {
           return console.log(err);
         });
