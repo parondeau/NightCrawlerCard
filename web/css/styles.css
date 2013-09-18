@@ -1,57 +1,39 @@
-.invalid {
-  border: 1px solid red; }
+body .app-page .app-topbar {
+  background-image: none !important;
+  background-color: #8E44AD !important;
+  webkit-box-shadow: none;
+  box-shadow: none; }
 
-.app-content .app-section .app-list li {
-  padding: 5px;
-  line-height: normal;
-  height: 100%;
-  margin: 0; }
-  .app-content .app-section .app-list li img {
-    height: 80px;
-    width: 80px;
-    float: left;
-    margin-right: 10px; }
-  .app-content .app-section .app-list li h1 {
-    color: #444;
-    margin: 0;
-    font-size: 25px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis; }
-  .app-content .app-section .app-list li p {
-    color: #999;
-    font-size: 13px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis; }
+#kikEm {
+  background-color: #1ABC9C;
+  height: 44px;
+  width: 100%;
+  text-align: center;
+  font-size: 21px;
+  line-height: 44px;
+  font-family: Lucida Grande, Helvetica Neue Ultra Light, Sans Serif;
+  color: white; }
+  #kikEm.active {
+    background-color: #16A085; }
 
-#venuePage .app-topbar #kikBtn {
-  background: url("../img/kik_it_white_name.png");
-  height: 20px;
-  width: 52px;
-  position: absolute;
-  right: 0;
-  top: 0;
-  margin: 12px 0px;
-  background-size: 40px;
-  background-repeat: no-repeat; }
-#venuePage .app-content .app-section.specificDescription {
-  padding: 5px; }
-  #venuePage .app-content .app-section.specificDescription .specificDescriptionInner {
-    line-height: normal;
-    height: 100%; }
-    #venuePage .app-content .app-section.specificDescription .specificDescriptionInner img {
-      height: 125px;
-      width: 125px;
-      float: left;
-      margin-right: 10px; }
-    #venuePage .app-content .app-section.specificDescription .specificDescriptionInner h1 {
-      color: #444;
-      margin: 0;
-      font-size: 25px;
-      vertical-align: top; }
-    #venuePage .app-content .app-section.specificDescription .specificDescriptionInner p {
-      color: #999;
-      font-size: 20px;
-      display: inline-block;
-      margin-top: 5px; }
+.viewport {
+  width: 304px;
+  overflow: hidden;
+  margin: 0 auto;
+  -webkit-transform: translateZ(0);
+  /* Optional: When heavy at iOS6+ */ }
+
+.flipsnap {
+  width: 912px;
+  /* 320px(item width) * 3(item count) */ }
+
+.item {
+  float: left;
+  width: 304px;
+  font-size: 50px;
+  text-align: center;
+  background-image: url("http://goodgeneration.files.wordpress.com/2012/02/monisha-kapila-profile-photo-square1.jpg");
+  background-size: 303px;
+  background-repeat: no-repeat;
+  opacity: 0.2;
+  height: 291px; }
