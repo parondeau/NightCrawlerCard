@@ -19,9 +19,11 @@
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCReRLRZaLnk1-rwg9ui1U-rjhzQUEQ7s4&sensor=true"></script>
 		
 		<!-- JS -->
+		<script src="http://www.parsecdn.com/js/parse-1.2.12.min.js"></script>
 		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		<script src="js/flipsnap.min.js"></script>
 		<script>
-			var barsList;
+			Parse.initialize("EKWUchl3T9VCdLUwEuBWjYhoOYY3YOdSZdYiTcKo", "3mCL19US9gtBj4aAauYtFMHYvP5uwIcT2OknGUGe");
 		</script>
 	</head>
 	<body>
@@ -29,38 +31,16 @@
 
 		<div class="app-page" data-page="home">
 			<div class="app-topbar">
-				<div class="app-title">Night Crawler</div>
+				<div class="app-title">Yip</div>
 			</div>
 			<div class="app-content">
-				<div class="app-section">
-					<div>
-						<input id="venueSearchQuery" class="app-input" type="text" placeholder="Enter Your City and Province">
-						<div id="venueSearchButton" class="app-button">Search</div>
-					</div>
-				</div>
 				<div class="app-section" id="venueListSection">
 					<ul id="venuesList" class="app-list">
 					</ul>
 				</div>
 			</div>
 		</div>
-
-		<div class="app-page" data-page="venuePage" id="venuePage">
-			<div class="app-topbar">
-				<div class="app-button left" data-back="true" id="backToHome">Venues</div>
-				<div class="app-title middle">Night Crawler</div>
-				<div id="kikBtn"></div>
-			</div>
-			<div class="app-content">
-				<div class="app-section specificDescription">
-					<div class="specificDescriptionInner">
-				  	<img id="venuePhoto" src="img/icon.png">
-				  	<h1 id="venueName"></h1>
-				  	<p id="venueDesc">Enter Description</p>
-					</div>
-				</div>
-			</div>
-		</div>
+		
 		<script src="/zerver/API.js"></script>
 		<script src="http://cdn.kik.com/cards/0/cards.js"></script>
 		<script src="http://cdn.kik.com/app/1/app.js"></script>
